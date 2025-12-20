@@ -1,0 +1,60 @@
+{{ define "main" }}
+<section class="list-hero populer">
+    <div class="container">
+        <h1 class="list-title">⭐ {{ .Title }}</h1>
+        <p class="list-subtitle">{{ .Description }}</p>
+    </div>
+</section>
+
+<section class="list-content">
+    <div class="container">
+        <!-- Filtre -->
+        <div class="list-filter">
+            <div class="filter-gender">
+                <a href="#erkek-populer" class="filter-btn">👦 Erkek</a>
+                <a href="#kiz-populer" class="filter-btn">👧 Kız</a>
+            </div>
+        </div>
+
+        <!-- Popüler Erkek İsimleri -->
+        <div class="popular-section" id="erkek-populer">
+            <h2 class="section-subtitle">👦 Popüler Erkek İsimleri</h2>
+            {{ $populerErkek := where (where (where .Site.RegularPages "Section" "isim") ".Params.cinsiyet" "erkek") ".Params.populer" true }}
+            <div class="names-grid">
+                {{ range first 24 $populerErkek }}
+                <a href="{{ .Permalink }}" class="name-card popular">
+                    <span class="popular-badge">⭐</span>
+                    <h3 class="name-title">{{ .Title }}</h3>
+                    <div class="name-meta">
+                        {{ if .Params.koken }}
+                        <span class="name-origin">{{ .Params.koken }}</span>
+                        {{ end }}
+                    </div>
+                    <p class="name-summary">{{ .Description | truncate 80 }}</p>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Popüler Kız İsimleri -->
+        <div class="popular-section" id="kiz-populer">
+            <h2 class="section-subtitle">👧 Popüler Kız İsimleri</h2>
+            {{ $populerKiz := where (where (where .Site.RegularPages "Section" "isim") ".Params.cinsiyet" "kiz") ".Params.populer" true }}
+            <div class="names-grid">
+                {{ range first 24 $populerKiz }}
+                <a href="{{ .Permalink }}" class="name-card popular">
+                    <span class="popular-badge">⭐</span>
+                    <h3 class="name-title">{{ .Title }}</h3>
+                    <div class="name-meta">
+                        {{ if .Params.koken }}
+                        <span class="name-origin">{{ .Params.koken }}</span>
+                        {{ end }}
+                    </div>
+                    <p class="name-summary">{{ .Description | truncate 80 }}</p>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

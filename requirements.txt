@@ -1,0 +1,20 @@
+# İsim Sitesi - Python Bağımlılıkları
+
+# HTTP istekleri
+aiohttp>=3.9.0
+requests>=2.31.0
+
+# Groq API
+groq>=0.4.0
+
+# İlerleme çubuğu
+tqdm>=4.66.0
+
+# URL slug üretimi
+python-slugify>=8.0.0
+
+# YAML işlemleri
+pyyaml>=6.0.0
+
+# Environment variables
+python-dotenv>=1.0.0

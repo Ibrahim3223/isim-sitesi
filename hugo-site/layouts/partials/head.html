@@ -1,0 +1,201 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!-- Primary Meta Tags -->
+<title>{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.tagline }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="title" content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.tagline }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+<meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+<!-- Keywords -->
+{{ if .Params.keywords }}
+<meta name="keywords" content="{{ delimit .Params.keywords ", " }}">
+{{ else }}
+<meta name="keywords" content="bebek isimleri, erkek isimleri, kız isimleri, türk isimleri, isim anlamları, bebek ismi, modern isimler, dini isimler, türkçe isimler">
+{{ end }}
+
+<!-- Author -->
+<meta name="author" content="{{ .Site.Params.siteName }}">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Language -->
+<meta http-equiv="content-language" content="tr">
+<meta name="language" content="Turkish">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+<meta property="og:site_name" content="{{ .Site.Params.siteName }}">
+<meta property="og:locale" content="tr_TR">
+{{ if .Params.image }}
+<meta property="og:image" content="{{ .Params.image | absURL }}">
+{{ else }}
+<meta property="og:image" content="{{ "favicons/logo.png" | absURL }}">
+{{ end }}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="{{ .Permalink }}">
+<meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }}{{ end }}">
+<meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+{{ if .Params.image }}
+<meta name="twitter:image" content="{{ .Params.image | absURL }}">
+{{ else }}
+<meta name="twitter:image" content="{{ "favicons/logo.png" | absURL }}">
+{{ end }}
+
+<!-- Additional Meta Tags for SEO -->
+<meta name="theme-color" content="#3b82f6">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="{{ .Site.Params.siteName }}">
+<meta name="format-detection" content="telephone=no">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicons/favicon-32x32.png" | relURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicons/favicon-16x16.png" | relURL }}">
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "favicons/apple-touch-icon.png" | relURL }}">
+<link rel="manifest" href="{{ "favicons/site.webmanifest" | relURL }}">
+
+<!-- CSS -->
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+<!-- Preconnect for Performance -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<!-- JSON-LD Schema.org Markup -->
+{{ if .IsHome }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ .Site.Params.siteName }}",
+    "alternateName": "İsim Sözlüğü",
+    "url": "{{ .Site.BaseURL }}",
+    "description": "{{ .Site.Params.description }}",
+    "inLanguage": "tr-TR",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "{{ .Site.BaseURL }}?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ .Site.Params.siteName }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ "favicons/logo.png" | absURL }}"
+        }
+    }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "{{ .Site.Params.siteName }}",
+    "url": "{{ .Site.BaseURL }}",
+    "logo": "{{ "favicons/logo.png" | absURL }}",
+    "description": "{{ .Site.Params.description }}",
+    "sameAs": []
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ .Site.Title }}",
+    "description": "{{ .Site.Params.description }}",
+    "url": "{{ .Site.BaseURL }}",
+    "inLanguage": "tr-TR",
+    "isPartOf": {
+        "@type": "WebSite",
+        "name": "{{ .Site.Params.siteName }}",
+        "url": "{{ .Site.BaseURL }}"
+    }
+}
+</script>
+
+{{ else if eq .Section "isim" }}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ .Title }} İsminin Anlamı",
+    "description": "{{ .Description }}",
+    "articleBody": "{{ .Summary }}",
+    "keywords": "{{ if .Params.keywords }}{{ delimit .Params.keywords ", " }}{{ end }}",
+    "author": {
+        "@type": "Organization",
+        "name": "{{ .Site.Params.siteName }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ .Site.Params.siteName }}",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ "favicons/logo.png" | absURL }}"
+        }
+    },
+    "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+    },
+    "inLanguage": "tr-TR"
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Ana Sayfa",
+            "item": "{{ .Site.BaseURL }}"
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ if eq .Params.cinsiyet "erkek" }}Erkek İsimleri{{ else if eq .Params.cinsiyet "kiz" }}Kız İsimleri{{ else }}İsimler{{ end }}",
+            "item": "{{ .Site.BaseURL }}{{ if eq .Params.cinsiyet "erkek" }}erkek-isimleri{{ else if eq .Params.cinsiyet "kiz" }}kiz-isimleri{{ else }}isim{{ end }}/"
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ .Title }}",
+            "item": "{{ .Permalink }}"
+        }
+    ]
+}
+</script>
+
+{{ end }}
+
+<!-- Google Analytics (eklenecekse) -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->

@@ -1,0 +1,59 @@
+<footer class="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <a href="{{ .Site.BaseURL }}" class="footer-logo">
+                    <img src="/favicons/logo.png" alt="{{ .Site.Params.siteName }}" class="footer-logo-image">
+                    <span class="logo-text">{{ .Site.Params.siteName }}</span>
+                </a>
+                <p class="footer-desc">{{ .Site.Params.tagline }}</p>
+                <p class="footer-text">Türkiye'nin en kapsamlı bebek isimleri rehberi. Erkek ve kız bebek isimleri, anlamları ve kökenleri.</p>
+            </div>
+
+            <!-- Kategoriler -->
+            <div class="footer-section">
+                <h4 class="footer-title">Kategoriler</h4>
+                <ul class="footer-links">
+                    <li><a href="/erkek-isimleri/">Erkek İsimleri</a></li>
+                    <li><a href="/kiz-isimleri/">Kız İsimleri</a></li>
+                    <li><a href="/populer-isimler/">Popüler İsimler</a></li>
+                    <li><a href="/islami-isimler/">İslami İsimler</a></li>
+                </ul>
+            </div>
+
+            <!-- Kökenler -->
+            <div class="footer-section">
+                <h4 class="footer-title">Kökenlere Göre</h4>
+                <ul class="footer-links">
+                    <li><a href="/koken/turkce/">Türkçe İsimler</a></li>
+                    <li><a href="/koken/arapca/">Arapça İsimler</a></li>
+                    <li><a href="/koken/farsca/">Farsça İsimler</a></li>
+                    <li><a href="/koken/diger/">Diğer Kökenler</a></li>
+                </ul>
+            </div>
+
+            <!-- Bilgi -->
+            <div class="footer-section">
+                <h4 class="footer-title">Bilgi</h4>
+                <ul class="footer-links">
+                    <li><a href="/hakkimizda/">Hakkımızda</a></li>
+                    <li><a href="/iletisim/">İletişim</a></li>
+                    <li><a href="/gizlilik-politikasi/">Gizlilik Politikası</a></li>
+                    <li><a href="/kullanim-kosullari/">Kullanım Koşulları</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} {{ .Site.Params.siteName }}. Tüm hakları saklıdır.</p>
+        </div>
+    </div>
+</footer>
+
+<!-- Back to Top -->
+<button id="back-to-top" class="back-to-top" aria-label="Yukarı çık">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+</button>

@@ -1,0 +1,101 @@
+baseURL = "https://isimsozlugu.net/"
+languageCode = "tr-TR"
+defaultContentLanguage = "tr"
+title = "İsim Sözlüğü - Bebek İsimleri ve Anlamları"
+description = "Türkiye'nin en kapsamlı bebek isimleri sözlüğü. 5000+ Türk ismi, anlamları, kökenleri ve karakter özellikleri."
+
+# SEO Settings
+enableRobotsTXT = true
+canonifyURLs = true
+enableEmoji = true
+enableGitInfo = false
+
+# Performance
+timeout = "30s"
+enableInlineShortcodes = true
+
+[params]
+  siteName = "İsim Sözlüğü"
+  description = "Bebeğinize en güzel ismi bulun. Erkek ve kız bebek isimleri, anlamları, kökenleri ve karakter özellikleri."
+  author = "İsim Sözlüğü"
+  logo = "/favicons/logo.png"
+  tagline = "Türkiye'nin En Kapsamlı Bebek İsimleri Rehberi"
+  keywords = "bebek isimleri, erkek isimleri, kız isimleri, türk isimleri, isim anlamları, bebek ismi"
+
+  # Social Media (ileride eklenebilir)
+  # facebook = "https://facebook.com/isimsozlugu"
+  # twitter = "https://twitter.com/isimsozlugu"
+  # instagram = "https://instagram.com/isimsozlugu"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[sitemap]
+  changefreq = "daily"
+  priority = 0.8
+  filename = "sitemap.xml"
+
+[privacy]
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+    respectDoNotTrack = true
+  [privacy.youtube]
+    privacyEnhanced = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
+  page = ["HTML"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  cinsiyet = "cinsiyet"
+  koken = "koken"
+
+[permalinks]
+  isim = "/isim/:slug/"
+
+[minify]
+  minifyOutput = true
+
+[pagination]
+  pagerSize = 48
+
+[related]
+  includeNewer = true
+  threshold = 80
+  toLower = true
+  [[related.indices]]
+    name = "categories"
+    weight = 100
+  [[related.indices]]
+    name = "tags"
+    weight = 80
+  [[related.indices]]
+    name = "koken"
+    weight = 60
+
+[menu]
+  [[menu.main]]
+    name = "Ana Sayfa"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Erkek İsimleri"
+    url = "/erkek-isimleri/"
+    weight = 2
+  [[menu.main]]
+    name = "Kız İsimleri"
+    url = "/kiz-isimleri/"
+    weight = 3
+  [[menu.main]]
+    name = "Popüler İsimler"
+    url = "/populer-isimler/"
+    weight = 4
+  [[menu.main]]
+    name = "İslami İsimler"
+    url = "/islami-isimler/"
+    weight = 5

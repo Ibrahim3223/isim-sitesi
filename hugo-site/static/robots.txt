@@ -1,0 +1,35 @@
+# robots.txt for isimsozlugu.net
+# İsim Sözlüğü - Bebek İsimleri ve Anlamları
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://isimsozlugu.net/sitemap.xml
+
+# Crawl-delay (saniye)
+Crawl-delay: 1
+
+# Özel izinler
+Allow: /isim/
+Allow: /erkek-isimleri/
+Allow: /kiz-isimleri/
+Allow: /populer-isimler/
+Allow: /islami-isimler/
+Allow: /koken/
+Allow: /a-z-isimler/
+
+# Google Bot
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Bing Bot
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Yandex Bot
+User-agent: Yandex
+Allow: /
+Crawl-delay: 1

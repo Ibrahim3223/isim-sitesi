@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section class="list-hero erkek">
+    <div class="container">
+        <h1 class="list-title">{{ .Title }}</h1>
+        <p class="list-subtitle">{{ .Description }}</p>
+    </div>
+</section>
+
+<section class="list-content">
+    <div class="container">
+        <!-- Harf Filtresi -->
+        <div class="list-filter">
+            <div class="filter-alphabet">
+                <span>Harfe Gore:</span>
+                {{ range (seq 65 90) }}
+                {{ $letter := printf "%c" . }}
+                <a href="#harf-{{ $letter }}" class="filter-letter">{{ $letter }}</a>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- Isim Listesi -->
+        {{ $erkekIsimler := where (where .Site.RegularPages "Section" "isim") ".Params.cinsiyet" "erkek" }}
+
+        <div class="names-grid">
+            {{ range $erkekIsimler.ByTitle }}
+            <a href="{{ .Permalink }}" class="name-card">
+                <h3 class="name-title">{{ .Title }}</h3>
+                <div class="name-meta">
+                    {{ if .Params.koken }}
+                    <span class="name-origin">{{ .Params.koken }}</span>
+                    {{ end }}
+                </div>
+                <p class="name-summary">{{ .Description | truncate 80 }}</p>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

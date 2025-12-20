@@ -1,0 +1,170 @@
+{{ define "main" }}
+<article class="name-detail">
+    <div class="container">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="/">Ana Sayfa</a>
+            <span>/</span>
+            {{ if eq .Params.cinsiyet "erkek" }}
+            <a href="/erkek-isimleri/">Erkek İsimleri</a>
+            {{ else if eq .Params.cinsiyet "kiz" }}
+            <a href="/kiz-isimleri/">Kız İsimleri</a>
+            {{ else }}
+            <a href="/isim/">İsimler</a>
+            {{ end }}
+            <span>/</span>
+            <span>{{ .Title }}</span>
+        </nav>
+
+        <!-- İsim Başlığı -->
+        <header class="name-header">
+            <h1 class="name-main-title">{{ .Title }}</h1>
+            <p class="name-tagline">{{ .Params.kisa_anlam | default .Description }}</p>
+
+            <div class="name-badges">
+                {{ if .Params.cinsiyet }}
+                <span class="badge badge-gender {{ .Params.cinsiyet }}">
+                    {{ if eq .Params.cinsiyet "erkek" }}👦 Erkek İsmi{{ else if eq .Params.cinsiyet "kiz" }}👧 Kız İsmi{{ else }}👶 Unisex{{ end }}
+                </span>
+                {{ end }}
+
+                {{ if .Params.koken }}
+                <span class="badge badge-origin">🌍 {{ .Params.koken }} Kökenli</span>
+                {{ end }}
+
+                {{ if .Params.populer }}
+                <span class="badge badge-popular">⭐ Popüler İsim</span>
+                {{ end }}
+
+                {{ if .Params.islami }}
+                <span class="badge badge-islamic">🕌 İslami İsim</span>
+                {{ end }}
+            </div>
+        </header>
+
+        <!-- Paylaşım -->
+        <div class="share-buttons">
+            <span>Paylaş:</span>
+            <a href="https://twitter.com/intent/tweet?text={{ .Title }} isminin anlamı&url={{ .Permalink }}" target="_blank" rel="noopener" class="share-btn twitter">Twitter</a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink }}" target="_blank" rel="noopener" class="share-btn facebook">Facebook</a>
+            <a href="https://wa.me/?text={{ .Title }} isminin anlamı: {{ .Permalink }}" target="_blank" rel="noopener" class="share-btn whatsapp">WhatsApp</a>
+        </div>
+
+        <!-- Ana İçerik -->
+        <div class="name-content">
+            {{ .Content }}
+        </div>
+
+        <!-- Özet Kutusu -->
+        <div class="name-summary-box">
+            <h3>{{ .Title }} İsmi Özet Bilgiler</h3>
+            <table class="summary-table">
+                <tr>
+                    <td><strong>İsim</strong></td>
+                    <td>{{ .Title }}</td>
+                </tr>
+                {{ if .Params.anlam }}
+                <tr>
+                    <td><strong>Anlam</strong></td>
+                    <td>{{ .Params.anlam }}</td>
+                </tr>
+                {{ end }}
+                {{ if .Params.cinsiyet }}
+                <tr>
+                    <td><strong>Cinsiyet</strong></td>
+                    <td>{{ if eq .Params.cinsiyet "erkek" }}Erkek{{ else if eq .Params.cinsiyet "kiz" }}Kız{{ else }}Unisex{{ end }}</td>
+                </tr>
+                {{ end }}
+                {{ if .Params.koken }}
+                <tr>
+                    <td><strong>Köken</strong></td>
+                    <td>{{ .Params.koken }}</td>
+                </tr>
+                {{ end }}
+                {{ if .Params.harf_sayisi }}
+                <tr>
+                    <td><strong>Harf Sayısı</strong></td>
+                    <td>{{ .Params.harf_sayisi }}</td>
+                </tr>
+                {{ end }}
+                {{ if .Params.hece_sayisi }}
+                <tr>
+                    <td><strong>Hece Sayısı</strong></td>
+                    <td>{{ .Params.hece_sayisi }}</td>
+                </tr>
+                {{ end }}
+            </table>
+        </div>
+
+        <!-- Benzer İsimler -->
+        {{ if .Params.benzer_isimler }}
+        <section class="similar-names">
+            <h3>Benzer İsimler</h3>
+            <div class="similar-names-list">
+                {{ range .Params.benzer_isimler }}
+                <a href="/isim/{{ . | urlize }}/" class="similar-name">{{ . }}</a>
+                {{ end }}
+            </div>
+        </section>
+        {{ end }}
+
+        <!-- İlgili İsimler -->
+        <section class="related-names">
+            <h3>Diğer {{ if eq .Params.cinsiyet "erkek" }}Erkek{{ else if eq .Params.cinsiyet "kiz" }}Kız{{ else }}{{ end }} İsimleri</h3>
+            <div class="names-grid">
+                {{ $cinsiyet := .Params.cinsiyet }}
+                {{ $currentPage := . }}
+                {{ $related := where (where .Site.RegularPages "Section" "isim") ".Params.cinsiyet" $cinsiyet }}
+                {{ range first 6 (shuffle $related) }}
+                {{ if ne .Permalink $currentPage.Permalink }}
+                <a href="{{ .Permalink }}" class="name-card">
+                    <h4 class="name-title">{{ .Title }}</h4>
+                    <div class="name-meta">
+                        {{ if .Params.koken }}
+                        <span class="name-origin">{{ .Params.koken }}</span>
+                        {{ end }}
+                    </div>
+                    <p class="name-summary">{{ .Description | truncate 60 }}</p>
+                </a>
+                {{ end }}
+                {{ end }}
+            </div>
+        </section>
+
+        <!-- Etiketler -->
+        {{ if .Params.tags }}
+        <footer class="name-footer">
+            <div class="name-tags">
+                {{ range .Params.tags }}
+                <a href="/tags/{{ . | urlize }}/" class="tag">{{ . }}</a>
+                {{ end }}
+            </div>
+        </footer>
+        {{ end }}
+    </div>
+</article>
+
+<!-- JSON-LD for Name -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{{ .Title }} İsminin Anlamı",
+    "description": "{{ .Description }}",
+    "author": {
+        "@type": "Organization",
+        "name": "{{ .Site.Params.siteName }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "{{ .Site.Params.siteName }}"
+    },
+    "datePublished": "{{ .Date.Format "2006-01-02" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ .Permalink }}"
+    }
+}
+</script>
+{{ end }}

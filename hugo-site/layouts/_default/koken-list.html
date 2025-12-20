@@ -1,0 +1,31 @@
+{{ define "main" }}
+<section class="list-hero">
+    <div class="container">
+        <h1 class="list-title">{{ .Title }}</h1>
+        <p class="list-subtitle">{{ .Description }}</p>
+    </div>
+</section>
+
+<section class="list-content">
+    <div class="container">
+        {{ $koken := .Params.koken }}
+        {{ $isimler := where (where .Site.RegularPages "Section" "isim") ".Params.koken" $koken }}
+
+        <div class="names-grid">
+            {{ range $isimler.ByTitle }}
+            <a href="{{ .Permalink }}" class="name-card">
+                <h3 class="name-title">{{ .Title }}</h3>
+                <div class="name-meta">
+                    {{ if .Params.cinsiyet }}
+                    <span class="name-gender {{ .Params.cinsiyet }}">
+                        {{ if eq .Params.cinsiyet "erkek" }}👦 Erkek{{ else if eq .Params.cinsiyet "kiz" }}👧 Kız{{ else }}👶 Unisex{{ end }}
+                    </span>
+                    {{ end }}
+                </div>
+                <p class="name-summary">{{ .Description | truncate 80 }}</p>
+            </a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}

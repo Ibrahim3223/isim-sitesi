@@ -1,0 +1,65 @@
+{{ define "main" }}
+<section class="list-hero">
+    <div class="container">
+        <h1 class="list-title">{{ .Title }}</h1>
+        {{ if .Description }}
+        <p class="list-subtitle">{{ .Description }}</p>
+        {{ end }}
+    </div>
+</section>
+
+<section class="list-content">
+    <div class="container">
+        <!-- Filtre -->
+        <div class="list-filter">
+            <div class="filter-alphabet">
+                <span>Harfe Göre:</span>
+                {{ range (seq 65 90) }}
+                {{ $letter := printf "%c" . }}
+                <a href="?harf={{ $letter | lower }}" class="filter-letter">{{ $letter }}</a>
+                {{ end }}
+                <a href="?" class="filter-letter filter-all">Tümü</a>
+            </div>
+        </div>
+
+        <!-- İsim Listesi -->
+        <div class="names-grid">
+            {{ range .Paginator.Pages }}
+            <a href="{{ .Permalink }}" class="name-card">
+                <h3 class="name-title">{{ .Title }}</h3>
+                <div class="name-meta">
+                    {{ if .Params.cinsiyet }}
+                    <span class="name-gender {{ .Params.cinsiyet }}">
+                        {{ if eq .Params.cinsiyet "erkek" }}👦 Erkek{{ else if eq .Params.cinsiyet "kiz" }}👧 Kız{{ else }}👶 Unisex{{ end }}
+                    </span>
+                    {{ end }}
+                    {{ if .Params.koken }}
+                    <span class="name-origin">{{ .Params.koken }}</span>
+                    {{ end }}
+                </div>
+                <p class="name-summary">{{ .Description | truncate 100 }}</p>
+            </a>
+            {{ end }}
+        </div>
+
+        <!-- Pagination -->
+        {{ if gt .Paginator.TotalPages 1 }}
+        <nav class="pagination">
+            {{ if .Paginator.HasPrev }}
+            <a href="{{ .Paginator.Prev.URL }}" class="pagination-btn prev">&larr; Önceki</a>
+            {{ end }}
+
+            <div class="pagination-numbers">
+                {{ range .Paginator.Pagers }}
+                <a href="{{ .URL }}" class="pagination-number {{ if eq . $.Paginator }}active{{ end }}">{{ .PageNumber }}</a>
+                {{ end }}
+            </div>
+
+            {{ if .Paginator.HasNext }}
+            <a href="{{ .Paginator.Next.URL }}" class="pagination-btn next">Sonraki &rarr;</a>
+            {{ end }}
+        </nav>
+        {{ end }}
+    </div>
+</section>
+{{ end }}

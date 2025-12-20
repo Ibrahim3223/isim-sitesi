@@ -1,0 +1,120 @@
+{{ define "main" }}
+<div class="article">
+    <header class="article-header">
+        <h1>{{ .Title }}</h1>
+        <p class="text-muted" style="text-align: center; margin-top: 8px;">
+            {{ .Description }}
+        </p>
+    </header>
+
+    <!-- A-Z Filter -->
+    <div class="az-filter">
+        <div class="az-filter-title">Harf Seçin</div>
+        <div class="az-letters">
+            {{ $letters := slice "A" "B" "C" "Ç" "D" "E" "F" "G" "H" "I" "İ" "J" "K" "L" "M" "N" "O" "Ö" "P" "R" "S" "Ş" "T" "U" "Ü" "V" "Y" "Z" }}
+            {{ $allPages := where .Site.RegularPages "Section" "isim" }}
+
+            {{ range $letters }}
+                {{ $letter := . }}
+                {{ $letterLower := lower . }}
+                {{ $hasPages := false }}
+                {{ range $allPages }}
+                    {{ if hasPrefix .Title $letter }}
+                        {{ $hasPages = true }}
+                    {{ end }}
+                {{ end }}
+
+                {{ if $hasPages }}
+                    <a href="#{{ $letterLower }}" class="az-letter" onclick="filterByLetter('{{ $letterLower }}')">{{ $letter }}</a>
+                {{ else }}
+                    <span class="az-letter disabled">{{ $letter }}</span>
+                {{ end }}
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- Letter Sections -->
+    <div class="article-content" id="az-content">
+        {{ $letters := slice "A" "B" "C" "Ç" "D" "E" "F" "G" "H" "I" "İ" "J" "K" "L" "M" "N" "O" "Ö" "P" "R" "S" "Ş" "T" "U" "Ü" "V" "Y" "Z" }}
+        {{ $allPages := where .Site.RegularPages "Section" "isim" }}
+
+        {{ range $letters }}
+            {{ $letter := . }}
+            {{ $letterLower := lower . }}
+
+            <!-- Collect pages for this letter -->
+            {{ $letterPages := slice }}
+            {{ range $allPages }}
+                {{ if hasPrefix .Title $letter }}
+                    {{ $letterPages = $letterPages | append . }}
+                {{ end }}
+            {{ end }}
+
+            {{ if gt (len $letterPages) 0 }}
+                <div class="az-section" id="{{ $letterLower }}" data-letter="{{ $letterLower }}">
+                    <h2 style="color: var(--primary); border-bottom: 2px solid var(--primary); padding-bottom: 8px; margin-top: 40px;">
+                        {{ $letter }} Harfi ({{ len $letterPages }} isim)
+                    </h2>
+                    <div class="list-grid" style="margin-top: 20px;">
+                        {{ range $letterPages.ByTitle }}
+                            <div class="list-item">
+                                <h3 style="margin: 0;">
+                                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                                </h3>
+                                <p style="margin-top: 8px; font-size: 14px; color: var(--text-light);">
+                                    {{ if .Params.anlam }}
+                                        {{ .Params.anlam | truncate 100 }}
+                                    {{ else }}
+                                        {{ .Description | truncate 100 }}
+                                    {{ end }}
+                                </p>
+                                <div style="margin-top: 8px; font-size: 12px;">
+                                    {{ if eq .Params.cinsiyet "unisex" }}
+                                        <span class="badge" style="background: var(--purple); color: white;">Unisex</span>
+                                    {{ else if eq .Params.cinsiyet "erkek" }}
+                                        <span class="badge" style="background: var(--blue); color: white;">Erkek</span>
+                                    {{ else }}
+                                        <span class="badge" style="background: var(--pink); color: white;">Kız</span>
+                                    {{ end }}
+                                    <span class="badge" style="background: var(--bg-secondary); color: var(--text);">{{ .Params.koken }}</span>
+                                </div>
+                            </div>
+                        {{ end }}
+                    </div>
+                </div>
+            {{ end }}
+        {{ end }}
+    </div>
+</div>
+
+<script>
+// Smooth scroll to letter section
+function filterByLetter(letter) {
+    const section = document.getElementById(letter);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+        // Update active state
+        document.querySelectorAll('.az-letter').forEach(el => el.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+}
+
+// Highlight active letter while scrolling
+window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('.az-section');
+    const scrollPos = window.scrollY + 150;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        const letter = section.dataset.letter;
+
+        if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+            document.querySelectorAll('.az-letter').forEach(el => el.classList.remove('active'));
+            document.querySelector(`a.az-letter[href="#${letter}"]`)?.classList.add('active');
+        }
+    });
+});
+</script>
+{{ end }}

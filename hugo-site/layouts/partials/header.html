@@ -1,0 +1,38 @@
+<header class="header">
+    <div class="container">
+        <nav class="nav">
+            <a href="{{ .Site.BaseURL }}" class="logo">
+                <img src="/favicons/logo.png" alt="{{ .Site.Params.siteName }}" class="logo-image">
+                <span class="logo-text">{{ .Site.Params.siteName }}</span>
+            </a>
+
+            <div class="nav-links">
+                {{ range .Site.Menus.main }}
+                <a href="{{ .URL }}" class="nav-link {{ if $.IsMenuCurrent "main" . }}active{{ end }}">
+                    {{ .Name }}
+                </a>
+                {{ end }}
+            </div>
+
+            <div class="nav-search">
+                <input type="text" id="search-input" placeholder="İsim ara..." autocomplete="off">
+                <div id="search-results" class="search-results"></div>
+            </div>
+
+            <button class="mobile-menu-btn" aria-label="Menü">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            {{ range .Site.Menus.main }}
+            <a href="{{ .URL }}" class="mobile-nav-link">{{ .Name }}</a>
+            {{ end }}
+        </div>
+    </div>
+</header>

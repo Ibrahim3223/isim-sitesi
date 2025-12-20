@@ -1,0 +1,158 @@
+{{ define "main" }}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>{{ .Site.Params.siteName }}</h1>
+        <p class="hero-tagline">Türkiye'nin En Kapsamlı Bebek İsimleri Rehberi</p>
+        <p class="hero-description">Binlerce Türk ismi, anlamları, kökenleri ve karakter özellikleri. Bebeğinize en güzel ve anlamlı ismi seçin.</p>
+
+        <div class="hero-search">
+            <svg class="hero-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <input type="text" id="hero-search-input" placeholder="İsim ara... örn: Elif, Yusuf, Zeynep" autocomplete="off">
+            <div id="hero-search-results" class="search-results"></div>
+        </div>
+
+        <div class="hero-tags">
+            <a href="/isim/elif/" class="hero-tag">Elif</a>
+            <a href="/isim/yusuf/" class="hero-tag">Yusuf</a>
+            <a href="/isim/zeynep/" class="hero-tag">Zeynep</a>
+            <a href="/isim/mehmet/" class="hero-tag">Mehmet</a>
+            <a href="/isim/ahmet/" class="hero-tag">Ahmet</a>
+            <a href="/isim/ayse/" class="hero-tag">Ayşe</a>
+            <a href="/isim/fatma/" class="hero-tag">Fatma</a>
+            <a href="/isim/ali/" class="hero-tag">Ali</a>
+        </div>
+    </div>
+</section>
+
+<!-- Kategoriler -->
+<section class="categories-section">
+    <div class="container">
+        <h2 class="section-title">İsim <span style="color: var(--primary);">Kategorileri</span></h2>
+        <p style="text-align: center; color: var(--text-light); margin-bottom: 32px;">İhtiyacınıza uygun kategoriyi seçin ve en güzel isimleri keşfedin</p>
+        <div class="categories-grid-modern">
+            <a href="/erkek-isimleri/" class="category-card-modern boy">
+                <div class="category-icon-modern">👦</div>
+                <h3>Erkek İsimleri</h3>
+                <p>Güçlü ve anlamlı erkek bebek isimleri</p>
+                <span class="category-arrow">→</span>
+            </a>
+            <a href="/kiz-isimleri/" class="category-card-modern girl">
+                <div class="category-icon-modern">👧</div>
+                <h3>Kız İsimleri</h3>
+                <p>Zarif ve özel kız bebek isimleri</p>
+                <span class="category-arrow">→</span>
+            </a>
+            <a href="/populer-isimler/" class="category-card-modern popular">
+                <div class="category-icon-modern">⭐</div>
+                <h3>Popüler İsimler</h3>
+                <p>En çok tercih edilen bebek isimleri</p>
+                <span class="category-arrow">→</span>
+            </a>
+            <a href="/islami-isimler/" class="category-card-modern islamic">
+                <div class="category-icon-modern">🕌</div>
+                <h3>İslami İsimler</h3>
+                <p>Kuran ve hadislerde geçen isimler</p>
+                <span class="category-arrow">→</span>
+            </a>
+            <a href="/a-z-isimler/" class="category-card-modern alphabet">
+                <div class="category-icon-modern">🔤</div>
+                <h3>A-Z İsim Listesi</h3>
+                <p>Alfabetik sıralı tüm isimler</p>
+                <span class="category-arrow">→</span>
+            </a>
+            <a href="/koken/turkce/" class="category-card-modern turkish">
+                <div class="category-icon-modern">🇹🇷</div>
+                <h3>Türkçe İsimler</h3>
+                <p>Öz Türkçe kökenli bebek isimleri</p>
+                <span class="category-arrow">→</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Kökenlere Göre -->
+<section class="origins-section">
+    <div class="container">
+        <h2 class="section-title">Kökenlere Göre İsimler</h2>
+        <div class="origins-grid">
+            <a href="/koken/turkce/" class="origin-card turkce">
+                <h3>Türkçe İsimler</h3>
+                <p>Öz Türkçe kökenli isimler</p>
+            </a>
+            <a href="/koken/arapca/" class="origin-card arapca">
+                <h3>Arapça İsimler</h3>
+                <p>Arapça kökenli isimler</p>
+            </a>
+            <a href="/koken/farsca/" class="origin-card farsca">
+                <h3>Farsça İsimler</h3>
+                <p>Farsça kökenli isimler</p>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Son Eklenen İsimler -->
+<section class="recent-section">
+    <div class="container">
+        <h2 class="section-title">Son Eklenen İsimler</h2>
+        <div class="names-grid">
+            {{ $isimler := where .Site.RegularPages "Section" "isim" }}
+            {{ range first 12 $isimler }}
+            <a href="{{ .Permalink }}" class="name-card">
+                <h3 class="name-title">{{ .Title }}</h3>
+                <div class="name-meta">
+                    {{ if .Params.cinsiyet }}
+                    <span class="name-gender {{ .Params.cinsiyet }}">
+                        {{ if eq .Params.cinsiyet "erkek" }}👦 Erkek{{ else if eq .Params.cinsiyet "kiz" }}👧 Kız{{ else }}👶 Unisex{{ end }}
+                    </span>
+                    {{ end }}
+                    {{ if .Params.koken }}
+                    <span class="name-origin">{{ .Params.koken }}</span>
+                    {{ end }}
+                </div>
+                <p class="name-summary">{{ .Description | truncate 80 }}</p>
+            </a>
+            {{ end }}
+        </div>
+        <div class="section-cta">
+            <a href="/isim/" class="btn btn-primary">Tüm İsimleri Gör</a>
+        </div>
+    </div>
+</section>
+
+<!-- A-Z İndeks -->
+<section class="alphabet-section">
+    <div class="container">
+        <h2 class="section-title">Alfabetik İsim Listesi</h2>
+        <p style="text-align: center; margin-bottom: 24px; color: var(--text-light);">
+            Tüm isimleri harflerine göre görüntüleyin ve aradığınız ismi kolayca bulun.
+        </p>
+        <div class="section-cta">
+            <a href="/a-z-isimler/" class="btn btn-primary">A-Z İsim Listesine Git →</a>
+        </div>
+    </div>
+</section>
+
+<!-- Info Section -->
+<section class="info-section">
+    <div class="container">
+        <div class="info-content">
+            <h2>Bebek İsmi Seçerken Nelere Dikkat Etmeli?</h2>
+            <p>Bebeğinize isim seçmek, hayatınızda vereceğiniz en önemli kararlardan biridir. İsim, çocuğunuzun kimliğinin bir parçası olacak ve onu hayatı boyunca temsil edecektir.</p>
+
+            <h3>İsim Seçerken Dikkat Edilmesi Gerekenler:</h3>
+            <ul>
+                <li><strong>Anlam:</strong> İsmin anlamını mutlaka araştırın. Güzel ve olumlu anlama sahip isimler tercih edin.</li>
+                <li><strong>Telaffuz:</strong> İsmin kolay telaffuz edilebilir olmasına dikkat edin.</li>
+                <li><strong>Soyadı Uyumu:</strong> İsmin soyadınızla uyumlu olup olmadığını kontrol edin.</li>
+                <li><strong>Köken:</strong> İsmin kökeni hakkında bilgi edinin. Türkçe, Arapça veya Farsça kökenli isimler farklı anlamlar taşır.</li>
+                <li><strong>Popülerlik:</strong> Çok popüler isimler sınıfta aynı isimde birden fazla çocuk olmasına neden olabilir.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{{ end }}

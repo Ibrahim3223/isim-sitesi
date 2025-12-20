@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pip install:*)",
+      "Bash(python generate_content.py:*)",
+      "Bash(dir /b \"c:\\\\Users\\\\Dante\\\\Desktop\\\\Yeniden\\\\WebSite\\\\isim-sitesi\\\\hugo-site\\\\content\\\\isim\")",
+      "Bash(hugo:*)",
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Bash(grep:*)",
+      "Bash(timeout:*)",
+      "Bash(git init:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

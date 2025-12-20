@@ -1,0 +1,45 @@
+# Hugo
+hugo-site/public/
+hugo-site/resources/
+hugo-site/.hugo_build.lock
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Progress files
+scripts/generation_progress.json
+
+# Temporary files
+*.tmp
+*.bak

@@ -1,0 +1,66 @@
+{{ define "main" }}
+<section class="list-hero islami">
+    <div class="container">
+        <h1 class="list-title">🕌 {{ .Title }}</h1>
+        <p class="list-subtitle">{{ .Description }}</p>
+    </div>
+</section>
+
+<section class="list-content">
+    <div class="container">
+        <!-- Açıklama -->
+        <div class="info-box">
+            <h3>İslami İsimler Hakkında</h3>
+            <p>İslami isimler, Kuran-ı Kerim'de geçen isimler, peygamber isimleri, sahabe isimleri ve dini anlamlar taşıyan isimlerdir. Bu isimler, Müslüman aileler tarafından çocuklarına verilmek üzere özellikle tercih edilmektedir.</p>
+        </div>
+
+        <!-- Filtre -->
+        <div class="list-filter">
+            <div class="filter-gender">
+                <a href="#erkek-islami" class="filter-btn">👦 Erkek</a>
+                <a href="#kiz-islami" class="filter-btn">👧 Kız</a>
+            </div>
+        </div>
+
+        <!-- İslami Erkek İsimleri -->
+        <div class="islamic-section" id="erkek-islami">
+            <h2 class="section-subtitle">👦 İslami Erkek İsimleri</h2>
+            {{ $islamiErkek := where (where (where .Site.RegularPages "Section" "isim") ".Params.cinsiyet" "erkek") ".Params.islami" true }}
+            <div class="names-grid">
+                {{ range $islamiErkek }}
+                <a href="{{ .Permalink }}" class="name-card islamic">
+                    <span class="islamic-badge">🕌</span>
+                    <h3 class="name-title">{{ .Title }}</h3>
+                    <div class="name-meta">
+                        {{ if .Params.koken }}
+                        <span class="name-origin">{{ .Params.koken }}</span>
+                        {{ end }}
+                    </div>
+                    <p class="name-summary">{{ .Description | truncate 80 }}</p>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+
+        <!-- İslami Kız İsimleri -->
+        <div class="islamic-section" id="kiz-islami">
+            <h2 class="section-subtitle">👧 İslami Kız İsimleri</h2>
+            {{ $islamiKiz := where (where (where .Site.RegularPages "Section" "isim") ".Params.cinsiyet" "kiz") ".Params.islami" true }}
+            <div class="names-grid">
+                {{ range $islamiKiz }}
+                <a href="{{ .Permalink }}" class="name-card islamic">
+                    <span class="islamic-badge">🕌</span>
+                    <h3 class="name-title">{{ .Title }}</h3>
+                    <div class="name-meta">
+                        {{ if .Params.koken }}
+                        <span class="name-origin">{{ .Params.koken }}</span>
+                        {{ end }}
+                    </div>
+                    <p class="name-summary">{{ .Description | truncate 80 }}</p>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}
