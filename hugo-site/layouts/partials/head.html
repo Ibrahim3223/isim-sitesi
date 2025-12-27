@@ -1,11 +1,6 @@
-<!-- Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-X10E5N3TK2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-X10E5N3TK2');
-</script>
+<!-- Preconnect for Performance (must be first) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,14 +70,9 @@
 <link rel="apple-touch-icon" sizes="180x180" href="{{ "favicons/apple-touch-icon.png" | relURL }}">
 <link rel="manifest" href="{{ "favicons/site.webmanifest" | relURL }}">
 
-<!-- CSS -->
+<!-- CSS with Preload -->
+<link rel="preload" href="{{ "css/style.css" | relURL }}" as="style">
 <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
-
-<!-- Preconnect for Performance -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="dns-prefetch" href="https://www.google-analytics.com">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
 <!-- Fonts - Optimized Loading -->
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
@@ -248,6 +238,21 @@
 
 {{ end }}
 
-<!-- Google Analytics (eklenecekse) -->
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script> -->
+<!-- Google Analytics - Deferred Loading for Better Performance -->
+<script>
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var script = document.createElement('script');
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=G-X10E5N3TK2';
+    script.async = true;
+    document.head.appendChild(script);
+
+    script.onload = function() {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-X10E5N3TK2');
+    };
+  }, 100);
+});
+</script>
