@@ -1302,7 +1302,7 @@ section {
 
 .footer-text {
     font-size: var(--font-size-sm);
-    color: var(--gray-500);
+    color: var(--gray-300);
 }
 
 .footer-section h4,
@@ -1332,7 +1332,7 @@ section {
     padding-top: 1.5rem;
     border-top: 1px solid var(--gray-800);
     font-size: var(--font-size-sm);
-    color: var(--gray-500);
+    color: var(--gray-300);
 }
 
 /* ----------------------------------------
@@ -1381,12 +1381,13 @@ section {
 }
 
 .btn-primary {
-    background: var(--primary);
+    background: var(--primary-dark);
     color: white;
+    font-weight: 600;
 }
 
 .btn-primary:hover {
-    background: var(--primary-dark);
+    background: #4338ca;
 }
 
 .btn-secondary {
