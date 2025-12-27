@@ -18,7 +18,7 @@ enableInlineShortcodes = true
   siteName = "İsim Sözlüğü"
   description = "Bebeğinize en güzel ismi bulun. Erkek ve kız bebek isimleri, anlamları, kökenleri ve karakter özellikleri."
   author = "İsim Sözlüğü"
-  logo = "/favicons/logo.png"
+  logo = "/favicons/logo.webp"
   tagline = "Türkiye'nin En Kapsamlı Bebek İsimleri Rehberi"
   keywords = "bebek isimleri, erkek isimleri, kız isimleri, türk isimleri, isim anlamları, bebek ismi"
 

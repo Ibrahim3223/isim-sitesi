@@ -45,7 +45,7 @@
 {{ if .Params.image }}
 <meta property="og:image" content="{{ .Params.image | absURL }}">
 {{ else }}
-<meta property="og:image" content="{{ "favicons/logo.png" | absURL }}">
+<meta property="og:image" content="{{ "favicons/logo.webp" | absURL }}">
 {{ end }}
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -58,7 +58,7 @@
 {{ if .Params.image }}
 <meta name="twitter:image" content="{{ .Params.image | absURL }}">
 {{ else }}
-<meta name="twitter:image" content="{{ "favicons/logo.png" | absURL }}">
+<meta name="twitter:image" content="{{ "favicons/logo.webp" | absURL }}">
 {{ end }}
 
 <!-- Additional Meta Tags for SEO -->
@@ -113,7 +113,7 @@
         "name": "{{ .Site.Params.siteName }}",
         "logo": {
             "@type": "ImageObject",
-            "url": "{{ "favicons/logo.png" | absURL }}"
+            "url": "{{ "favicons/logo.webp" | absURL }}"
         }
     }
 }
@@ -125,7 +125,7 @@
     "@type": "Organization",
     "name": "{{ .Site.Params.siteName }}",
     "url": "{{ .Site.BaseURL }}",
-    "logo": "{{ "favicons/logo.png" | absURL }}",
+    "logo": "{{ "favicons/logo.webp" | absURL }}",
     "description": "{{ .Site.Params.description }}",
     "sameAs": []
 }
@@ -206,7 +206,7 @@
         "name": "{{ .Site.Params.siteName }}",
         "logo": {
             "@type": "ImageObject",
-            "url": "{{ "favicons/logo.png" | absURL }}"
+            "url": "{{ "favicons/logo.webp" | absURL }}"
         }
     },
     "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
