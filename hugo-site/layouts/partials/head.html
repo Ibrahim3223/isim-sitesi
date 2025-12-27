@@ -84,8 +84,10 @@
 <link rel="dns-prefetch" href="https://www.google-analytics.com">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Fonts - Optimized Loading -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
 <!-- JSON-LD Schema.org Markup -->
 {{ if .IsHome }}
@@ -142,6 +144,47 @@
         "name": "{{ .Site.Params.siteName }}",
         "url": "{{ .Site.BaseURL }}"
     }
+}
+</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+        {
+            "@type": "Question",
+            "name": "Bebek ismi seçerken nelere dikkat etmeliyim?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Bebeğinize isim seçerken ismin anlamı, telaffuzu, soyadı ile uyumu, kökeni ve yazılışı gibi faktörleri göz önünde bulundurmalısınız. İsmin farklı ortamlarda nasıl algılanacağını da düşünmek faydalı olacaktır."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "2024'te en popüler bebek isimleri hangileri?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "2024 yılında Türkiye'de en popüler kız isimleri arasında Zeynep, Elif, Defne, Ecrin; erkek isimleri arasında ise Yusuf, Eymen, Ömer, Mustafa gibi isimler yer almaktadır."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "İslami bebek isimleri nelerdir?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "İslami bebek isimleri genellikle Arapça kökenli olup Kuran'da geçen veya peygamberlerle ilişkili isimlerdir. Örnek olarak Muhammed, Fatma, Ali, Ayşe, Zeynep, Meryem gibi isimler verilebilir."
+            }
+        },
+        {
+            "@type": "Question",
+            "name": "Türkçe kökenli bebek isimleri hangileri?",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Türkçe kökenli isimler arasında Deniz, Ege, Bora, Aslan, Çağla, Yağmur, Derya, Doruk gibi doğa ve güç temalı isimler bulunmaktadır. Bu isimler Türk kültürünün zenginliğini yansıtır."
+            }
+        }
+    ]
 }
 </script>
 

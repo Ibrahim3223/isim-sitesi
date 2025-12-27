@@ -1913,3 +1913,76 @@ section {
 .category-card-modern.turkish .category-arrow {
     color: #ef4444;
 }
+
+/* ----------------------------------------
+   Mobile Touch Target Optimization
+   ---------------------------------------- */
+@media (max-width: 768px) {
+    /* Minimum touch target size */
+    a, button, .name-card, .category-card-modern {
+        min-height: 44px;
+    }
+
+    /* Better touch areas for links */
+    .name-card {
+        padding: 16px;
+    }
+
+    /* Search input optimization */
+    input[type="search"],
+    input[type="text"] {
+        min-height: 48px;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    /* Navigation touch targets */
+    .nav-link {
+        padding: 12px 16px;
+    }
+}
+
+/* ----------------------------------------
+   Image Lazy Loading & Optimization
+   ---------------------------------------- */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+img[loading="lazy"] {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* ----------------------------------------
+   Performance: Reduce Motion
+   ---------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+/* ----------------------------------------
+   Print Styles
+   ---------------------------------------- */
+@media print {
+    header, footer, nav, .search-section {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+        line-height: 1.4;
+    }
+    
+    a {
+        text-decoration: underline;
+    }
+}

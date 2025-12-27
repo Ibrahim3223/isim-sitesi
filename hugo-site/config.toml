@@ -60,6 +60,17 @@ enableInlineShortcodes = true
 
 [minify]
   minifyOutput = true
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = false
+      keepEndTags = true
+      keepQuotes = true
+    [minify.tdewolff.css]
+      precision = 0
+      keepCSS2 = false
+    [minify.tdewolff.js]
+      precision = 0
+      keepVarNames = false
 
 [pagination]
   pagerSize = 48

@@ -10,7 +10,18 @@
       "Bash(grep:*)",
       "Bash(timeout:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(gh:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(if [ -f indexed_urls.json ])",
+      "Bash(then python -c \"import json; d=json.load\\(open\\(''indexed_urls.json''\\)\\); print\\(f''Indexlenen: {len\\(d.get\\(\"\"indexed\"\",[]\\)\\)}''\\); print\\(f''Basarisiz: {len\\(d.get\\(\"\"failed\"\",[]\\)\\)}''\\)\")",
+      "Bash(else echo \"Henuz indexleme yapilmamis\")",
+      "Bash(fi)"
     ]
   }
 }
