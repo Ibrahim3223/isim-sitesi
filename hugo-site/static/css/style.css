@@ -637,13 +637,15 @@ section {
 }
 
 .name-gender.erkek {
-    background-color: var(--erkek-bg);
-    color: var(--erkek);
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .name-gender.kiz {
-    background-color: var(--kiz-bg);
-    color: var(--kiz);
+    background-color: #db2777;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .name-origin {
@@ -858,13 +860,15 @@ section {
 }
 
 .badge-gender.erkek {
-    background-color: var(--erkek-bg);
-    color: var(--erkek);
+    background-color: #2563eb;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .badge-gender.kiz {
-    background-color: var(--kiz-bg);
-    color: var(--kiz);
+    background-color: #db2777;
+    color: #ffffff;
+    font-weight: 600;
 }
 
 .badge-origin {
